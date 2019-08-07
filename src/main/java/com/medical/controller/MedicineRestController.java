@@ -18,9 +18,10 @@ public class MedicineRestController {
 	private MedicineDao medicineDao;
 
 	@GetMapping("/medicines")
-	public List<?> getMedicines() {
-		return medicineDao.list();
-	}
+	   public ResponseEntity<List<Medicine>> getMedicines() {
+	      List<Medicine> listMedicines = (List<Medicine>) medicineDao.getMedicines();
+	      return ResponseEntity.ok().body(listMedicines);
+	   }
 
 	@GetMapping("/medicine/{medicineId}")
 	public ResponseEntity<Medicine> getMedicineById(@PathVariable("medicineId") int medicineId) {
